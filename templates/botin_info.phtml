@@ -1,0 +1,30 @@
+<?php require "templates/header.phtml"; ?>
+
+<div>
+    <h2>Marca</h2>
+    <div>
+        <?= $botin->id_marca ?>
+    </div>
+    <h2>Modelo</h2>
+    <div>
+        <?= $botin->modelo ?>
+    </div>
+    <h2>Color</h2>
+    <div>
+        <?= $botin->color ?>
+    </div>
+    <h2>Talle</h2>
+    <div>
+        <?= $botin->talle ?>
+    </div>
+    <h2>Gama</h2>
+    <div>
+        <?= $botin->gama ?>
+    </div>
+    <h2>Precio</h2>
+    <div>
+        $ <?= $botin->precio ?>
+    </div>
+</div>
+
+<?php require "templates/footer.phtml"; ?>

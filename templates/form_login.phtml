@@ -1,0 +1,19 @@
+<?php require "templates/header.phtml"; ?>
+
+<?php if($error) { ?>
+    <div>
+        <?= $error ?>
+    </div>
+<?php } ?>
+
+<form action="login" method="post">
+    <label for="usuario">Nombre de usuario</label>
+    <input type="text" name="usuario" required>
+
+    <label for="contraseña">Contraseña</label>
+    <input type="password" name="contraseña" required>
+
+    <button type="submit">Login</button>
+</form>
+
+<?php require "templates/footer.phtml"; ?>

@@ -1,0 +1,31 @@
+<?php require "templates/header.phtml"; ?>
+
+<div>
+        <h2>Editar botin</h2>
+
+        <form action='editBotin/<?= $botin->id_botin ?>' method='post'>   <!-- ver si va id o botinId -->
+
+            <label for=''>Marca</label>
+            <input type='text' name='marca'>
+
+            <label for=''>Modelo</label>
+            <input type='text' name='modelo'>
+
+            <label for=''>Color</label>
+            <input type='text' name='color'>
+
+            <label for=''>Talle</label>
+            <input type='number' name='talle'>
+
+            <label for=''>Gama</label>
+            <input type='text' name='gama'>
+
+            <label for=''>Precio</label>
+            <input type='number' name='precio'>
+
+            <button type='submit'>Editar</button>
+        </form>
+    </div>
+
+<?php require "templates/footer.phtml"; ?>
+
