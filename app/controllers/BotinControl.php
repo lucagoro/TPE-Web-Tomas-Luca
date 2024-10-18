@@ -16,8 +16,14 @@ class BotinControl {
     
     function showBotines() {
         $botines = $this->model->getAll();
-        $marcas = $this->modelMarca->getAllMarcas();
-        $this->view->showBotines($botines, $marcas);
+        $botinesConMarcas = [];
+        foreach ($botines as $botin) {
+            // Obtenemos el nombre de la marca por su ID
+            $marca = $this->modelMarca->getMarcaById($botin->id_marca);
+            $botin->nombre_marca = $marca ? $marca->nombre : 'Marca desconocida';
+            $botinesConMarcas[] = $botin;
+        }
+        $this->view->showBotines($botinesConMarcas);
     }
 
     function showBotin($id) {
@@ -70,5 +76,7 @@ class BotinControl {
             return $this->view->showError('Error al editar botin!');
         }
     }
+
+   
     
 }

@@ -35,7 +35,7 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
-    case 'eliminar':
+    case 'eliminarr':
         $controller = new MarcasControl();
         $controller->removeMarcas($params[1]);
         break;
