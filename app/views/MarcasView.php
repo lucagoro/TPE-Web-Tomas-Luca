@@ -4,4 +4,12 @@ class MarcasView{
     function showMarcas(){
         
     }
+    function showMarca(){
+
+    }
+    function showError($error){
+        require_once'templates/error.phtml';
+    }
+
+
 }

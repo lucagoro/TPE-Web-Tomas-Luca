@@ -1,36 +1,49 @@
 <?php
 class MarcasModel{
-    private function connect(){
-        return new PDO('mysql:host=localhost;dbname=db_tareas;charset=utf8','root', '');
+    private $db;
+
+    function __construct() {
+        $this->db = $this->connect();
     }
-    function getMarcas(){
-        $db=$this->connect();
-        $query = $db->prepare('SELECT * FROM tareas');
+
+    private function connect(){
+        return new PDO('mysql:host=localhost;dbname=marcas_botines;charset=utf8', 'root', '');
+    }
+    function getAllMarcas(){
+        
+        $query = $this->db->prepare("SELECT * FROM marcas");
         $query->execute();
     
-        $marcas = $query-> fetchALL(PDO::FETCH_OBJ);
+        $marcas = $query->fetchAll(PDO::FETCH_OBJ);
         return $marcas;
     }
-    function insertTask($title, $description, $priority){
+    function getMarca($id){
+        
+        $query =  $this->db->prepare('SELECT * FROM marcas WHERE id_marca=?');
+        $query->execute([$id]);
+    
+        $marca = $query-> fetchALL(PDO::FETCH_OBJ);
+        return $marca;
+    }
+    function insertMarca($marca, $sede){
         $db = $this-> connect();
     
-        $query= $db ->prepare('INSERT INTO tareas(titulo, descripcion, prioridad)VALUES(?,?,?)');
-        $query->execute([$title, $description, $priority]);
+        $query=  $this->db->prepare('INSERT INTO marcas(marca, sede)VALUES(?,?)');
+        $query->execute([$marca, $sede]);
         return $db->lastInsertId();
     }
-    function deleteTask($id){
+    function deleteMarca($id){
         
         $db= $this-> connect();
-        $query = $db->prepare('DELETE FROM tareas WHERE id=?');
+        $query = $db->prepare('DELETE FROM marcas WHERE id_marca=?');
         $query->execute([$id]);
         header('Location: ' . BASE_URL); 
       
     }
-    function updateTask($id){
-        $db = $this-> connect();
-        $query = $db->prepare('UPDATE tareas SET finalizada = 1 WHERE id=? ');
-        $query->execute([$id]);
-     
+    function editMarca($marca, $sede, $id_marca) {
+        $query = $this->db->prepare("UPDATE marcas SET marca = ?, sede = ?  WHERE id_marca = ?");
+        $editado = $query->execute([$marca, $sede]);
+        return $editado;
     }
     
 }
