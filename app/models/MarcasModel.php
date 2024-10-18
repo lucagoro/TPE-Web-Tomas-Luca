@@ -28,7 +28,7 @@ class MarcasModel{
     function insertMarca($marca, $sede){
         $db = $this-> connect();
     
-        $query=  $this->db->prepare('INSERT INTO marcas(marca, sede)VALUES(?,?)');
+        $query=  $this->db->prepare('INSERT INTO marcas(nombre, sede)VALUES(?,?)');
         $query->execute([$marca, $sede]);
         return $db->lastInsertId();
     }
@@ -41,7 +41,7 @@ class MarcasModel{
       
     }
     function editMarca($marca, $sede, $id_marca) {
-        $query = $this->db->prepare("UPDATE marcas SET marca = ?, sede = ?  WHERE id_marca = ?");
+        $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ?  WHERE id_marca = ?");
         $editado = $query->execute([$marca, $sede]);
         return $editado;
     }

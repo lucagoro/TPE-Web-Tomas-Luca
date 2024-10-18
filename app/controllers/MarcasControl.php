@@ -1,6 +1,6 @@
 <?php
 require_once 'app/models/MarcasModel.php';
-require_once 'app/views/MarcasViews.php';
+require_once 'app/views/MarcasView.php';
 
 class MarcasControl{
     private $view;
@@ -26,7 +26,7 @@ class MarcasControl{
         $sede = $_POST['sede'];
 
         if(empty($marca) || empty($sede)){
-            $this->view->showError('Faltan campos obligatorios! Por favor completarlos para seguir con el porceso.');
+            $this->view->showError('Faltan campos obligatorios! Por favor completarlos para seguir con el proceso.');
         }
         $id = $this->model->insertMarca($marca, $sede);
         if($id){
