@@ -20,10 +20,10 @@ class AuthControl {
         $contraseña = $_POST['contraseña'];
 
         if(empty($usuario)) {
-            return $this->view->showLogin("Falta completar el nombre de usuario!");
+            return $this->view->showLogin('Falta completar el nombre de usuario!');
         }
         if(empty($contraseña)) {
-            return $this->view->showLogin("Falta completar la contraseña!");
+            return $this->view->showLogin('Falta completar la contraseña!');
         }
 
         $userFromDB = $this->model->getUserByUsername($usuario); // verifica q el usuario este en la bd
@@ -35,7 +35,7 @@ class AuthControl {
             
             header("Location: " . BASE_URL);
         } else {
-            $this->view->showLogin("Credenciales incorrectas!"); // ver los return
+            return $this->view->showLogin('Credenciales incorrectas!'); // ver los return
         }
 
     }

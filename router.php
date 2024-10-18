@@ -2,14 +2,20 @@
  include "app/controllers/BotinControl.php";
  include "app/controllers/MarcasControl.php";
  include "app/controllers/AuthControl.php";
+ include "libs/response.php";
+ include "app/middlewares/sessionAuthMiddleware.php";
+ include "app/middlewares/verifyAuthMiddleware.php";
+
  
 
  define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
+$res = new Response();
+
  if(!empty($_GET['action'])) {
     $action = $_GET['action'];
  } else {
-    $action = 'botines' || $action = 'marcas'; // cambiar a inicio cuando este
+    $action = 'botines'; // cambiar a inicio cuando este
  }
 
  $params = explode('/', $action);
@@ -25,7 +31,7 @@
         $controller = new MarcasControl();
         $controller->showMarca($params[1]);
         break;
-    case 'insertar':
+    case 'insertarr':
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
@@ -38,23 +44,31 @@
         $controller->editMarca($idBotin);
         break;
     case 'botines':
-        $controller = new BotinControl();
+        sessionAuthMiddleware($res);
+        $controller = new BotinControl($res);
         $controller->showBotines();
         break;
     case 'botin':
-        $controller = new BotinControl();
+        sessionAuthMiddleware($res);
+        $controller = new BotinControl($res);
         $controller->showBotin($params[1]);
         break;
     case 'insertar':
-        $controller = new BotinControl();
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new BotinControl($res);
         $controller->addBotines();
         break;
     case 'eliminar':
-        $controller = new BotinControl();
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new BotinControl($res);
         $controller->removeBotines($params[1]);
         break;
     case 'editar':
-        $controller = new BotinControl();
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new BotinControl($res);
         $controller->editBotin($idBotin);
         break;
     case 'showLogin':

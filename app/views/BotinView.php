@@ -1,8 +1,13 @@
 <?php
 
 class BotinView {
+    public $usuario = null;
 
-    function showBotines($botines) {
+    function __construct($usuario) {
+            $this->usuario = $usuario;
+    }
+
+    function showBotines($botines, $marcas) {
         $count = count($botines);
         require "templates/lista_botines.phtml";
     }

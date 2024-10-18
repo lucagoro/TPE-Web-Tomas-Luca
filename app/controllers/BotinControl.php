@@ -1,24 +1,28 @@
 <?php
 include_once "app/models/BotinModel.php";
 include_once "app/views/BotinView.php";
+include_once "app/models/MarcasModel.php";
 
 class BotinControl {
     private $model;
     private $view;
+    private $modelMarca;
 
-    function __construct() {
+    function __construct($res) {
         $this->model = new BotinModel();
-        $this->view = new BotinView();
+        $this->view = new BotinView($res);
+        $this->modelMarca = new MarcasModel();
     }
     
     function showBotines() {
         $botines = $this->model->getAll();
-        $this->view->showBotines($botines);
+        $marcas = $this->modelMarca->getAllMarcas();
+        $this->view->showBotines($botines, $marcas);
     }
 
     function showBotin($id) {
         $botin = $this->model->get($id);
-        $this->view->showBotin($botin);
+        return $this->view->showBotin($botin);
     }
 
     function addBotines() {
@@ -30,14 +34,14 @@ class BotinControl {
         $id_marca = $_POST['id_marca'];
 
         if(empty($modelo) || empty($color) || empty($talle) || empty($gama) || empty($precio) || empty($id_marca)) {
-            $this->view->showError('Faltan campos obligatorios!');
+            return $this->view->showError('Faltan campos obligatorios!');
         }
 
         $id = $this->model->insert($modelo, $color, $talle, $gama, $precio, $id_marca);
         if($id) {
             header("Location: " . BASE_URL);
         } else {
-            $this->view->showError('Error al insertar botin!');
+            return $this->view->showError('Error al insertar botin!');
         }
     }
 
@@ -56,14 +60,14 @@ class BotinControl {
         $id_marca = $_POST['id_marca'];
 
         if(empty($modelo) || empty($color) || empty($talle) || empty($gama) || empty($precio) || empty($id_marca)) {
-            $this->view->showError('Faltan campos obligatorios!');
+            return $this->view->showError('Faltan campos obligatorios!');
         }
 
         $id = $this->model->edit($modelo, $color, $talle, $gama, $precio, $id_marca, $idBotin);
         if($id) {
             header("Location: " . BASE_URL);
         } else {
-            $this->view->showError('Error al editar botin!');
+            return $this->view->showError('Error al editar botin!');
         }
     }
     
