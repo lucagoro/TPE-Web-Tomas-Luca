@@ -43,4 +43,5 @@ class BotinModel {
         $editado = $sentencia->execute([$modelo, $color, $talle, $gama, $precio, $id_marca, $idBotin]);
         return $editado;
     }
+
 }

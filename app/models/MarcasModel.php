@@ -52,5 +52,11 @@ class MarcasModel{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getMarcaById($id) {
+        $query =  $this->db->prepare('SELECT * FROM marcas WHERE id_marca=?');
+        $query->execute([$id]);
+    
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
     
 }
