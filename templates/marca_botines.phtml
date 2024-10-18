@@ -7,7 +7,7 @@
 <ul>
     <?php foreach ($botines as $botin): ?>
         <li>
-            <?= $botin->mod ?> - Color: <?= $botin->color ?> - Precio: $<?= $botin->precio ?>
+            <?= $botin-> modelo?> - Color: <?= $botin->color ?> - Precio: $<?= $botin->precio ?>
             <a href="botin/<?= $botin->id_botin ?>">Ver detalles</a>
         </li>
     <?php endforeach; ?>

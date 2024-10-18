@@ -31,7 +31,7 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->showMarca($params[1]);
         break;
-    case 'insertarr':
+    case 'insertar':
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
@@ -53,19 +53,19 @@ $res = new Response();
         $controller = new BotinControl($res);
         $controller->showBotin($params[1]);
         break;
-    case 'insertar':
+    case 'insertarr':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
         $controller->addBotines();
         break;
-    case 'eliminar':
+    case 'eliminarr':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
         $controller->removeBotines($params[1]);
         break;
-    case 'editar':
+    case 'editarr':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);

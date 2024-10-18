@@ -37,7 +37,7 @@ class MarcasModel{
         
         $db= $this-> connect();
         $query = $db->prepare('DELETE FROM marcas WHERE id_marca=?');
-        $query->execute($id);
+        $query->execute([$id]);
         
       
     }
