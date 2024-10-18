@@ -11,9 +11,9 @@
     <label>Precio</label>
         <input required name="precio" type="number"> <!-- ver los required -->
     <label>Marca</label>
-        <select required name="marca">
-            <?php foreach($botines as $botin) { ?>
-            <option value="<?= $botin->id_marca ?>"> <?= $botin->id_marca ?></option>
+        <select required name="id_marca">
+            <?php foreach($marcas as $marca) { ?>
+            <option value="<?= $marca->id_marca ?>"> <?= $marca->nombre ?></option>
             <?php } ?>
         </select>
 
