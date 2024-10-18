@@ -5,20 +5,24 @@ require_once 'app/views/MarcasView.php';
 class MarcasControl{
     private $view;
     private $model;
+    private $modelBotin;
 
     function __construct() {
         $this->model = new MarcasModel();
         $this->view = new MarcasView();
+        $this->modelBotin = new BotinModel();
     }
 
     function showMarcas(){
         $marcas = $this->model->getAllMarcas();
+        $botines = $this->modelBotin->getAll();
         $this->view->showMarcas($marcas);
     }
 
     function showMarca($id){
         $marca = $this->model->getMarca($id);
-        $this->view->showMarca($marca);
+        $botines = $this->model->getBotinesByMarca($id);
+        $this->view->showMarca($marca, $botines);
     }
 
     function addMarca(){
@@ -38,6 +42,7 @@ class MarcasControl{
 
     function removeMarcas($id){
         $this->model->deleteMarca($id);
+        header('Location: ' . BASE_URL);
     }
 
     function editMarca($id_marca){

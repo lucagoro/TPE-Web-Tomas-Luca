@@ -1,0 +1,18 @@
+<?php 
+ require_once "templates/header.phtml";
+ require_once "templates/insertar_marcas.phtml";
+?>      
+
+<ul>
+    <?php foreach($marcas as $marca) {?>
+        <li>
+            <?= $marca->nombre ?> | Sede: <?= $marca->sede?>
+            <a href="eliminar/<?= $marca->id_marca?>" type="button">Borrar</a>
+            <p><a href="marca/<?= $marca->id_marca ?>">Ver botines de <?= $marca->nombre ?></a></p>
+        </li>
+    <?php } ?>
+</ul>
+
+        
+    
+<?php require_once "templates/footer.phtml"; ?>

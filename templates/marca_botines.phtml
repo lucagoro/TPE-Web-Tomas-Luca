@@ -1,0 +1,20 @@
+<?php require "templates/header.phtml"; ?>
+
+<h2>Marca: <?= $marca->nombre ?></h2>
+<p>Sede: <?= $marca->sede ?></p>
+
+<h3>Botines de esta marca:</h3>
+<ul>
+    <?php foreach ($botines as $botin): ?>
+        <li>
+            <?= $botin->mod ?> - Color: <?= $botin->color ?> - Precio: $<?= $botin->precio ?>
+            <a href="botin/<?= $botin->id_botin ?>">Ver detalles</a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<?php if (empty($botines)): ?>
+    <p>No hay botines disponibles para esta marca.</p>
+<?php endif; ?>
+
+<?php require "templates/footer.phtml"; ?>
