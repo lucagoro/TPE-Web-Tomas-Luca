@@ -7,7 +7,7 @@
 <ul>
     <?php foreach($botinesConMarcas as $botin) {?>
         <li>
-            <a href="botin"> <?= $botin->modelo ?> | Marca: <?=($botin->nombre_marca)?> </a>
+            <a href="botin/<?= $botin->id_botin?>"> <?= $botin->modelo ?> | Marca: <?=($botin->nombre_marca)?> </a>
             <a href="eliminar/<?= $botin->id_botin?>" type="button">Borrar</a>  <!-- ver si va id o botinId (revisar este tipo de cosas)-->
         </li>   
     <?php  }?>

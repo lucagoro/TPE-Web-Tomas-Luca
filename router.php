@@ -65,11 +65,11 @@ $res = new Response();
         $controller = new BotinControl($res);
         $controller->removeBotines($params[1]);
         break;
-    case 'editar':
+    case 'editBotin':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
-        $controller->editBotin($idBotin);
+        $controller->editBotin($params[1]);
         break;
     case 'showLogin':
         $controller = new AuthControl();

@@ -28,7 +28,8 @@ class BotinControl {
 
     function showBotin($id) {
         $botin = $this->model->get($id);
-        $this->view->showBotin($botin);
+        $marcas = $this->modelMarca->getAllMarcas();
+        $this->view->showBotin($botin, $marcas);
     }
 
     function addBotines() {

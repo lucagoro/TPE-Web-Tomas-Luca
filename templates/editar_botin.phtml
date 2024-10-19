@@ -6,7 +6,11 @@
         <form action='editBotin/<?= $botin->id_botin ?>' method='post'>   <!-- ver si va id o botinId -->
 
             <label for='marca'>Marca</label>
-            <input type='text' name='marca'>
+            <select required name="id_marca">
+                <?php foreach($marcas as $marca) { ?>
+                <option value="<?= $marca->id_marca ?>"> <?= $marca->nombre ?></option>
+                <?php } ?>
+            </select>
 
             <label for='modelo'>Modelo</label>
             <input type='text' name='modelo'>
