@@ -28,7 +28,7 @@ class AuthControl {
 
         $userFromDB = $this->model->getUserByUsername($usuario); // verifica q el usuario este en la bd
 
-        if(password_verify($contraseña, $userFromDB->contraseña)) {
+        if($userFromDB && password_verify($contraseña, $userFromDB->contraseña)) {
             session_start();
             $_SESSION['id_usuario'] = $userFromDB->id_usuario;
             $_SESSION['usuario'] = $userFromDB->usuario;
@@ -40,5 +40,10 @@ class AuthControl {
 
     }
 
+    function logout() {
+        session_start();
+        session_destroy();
+        header('Location: ' . BASE_URL);
+    }
     
 }

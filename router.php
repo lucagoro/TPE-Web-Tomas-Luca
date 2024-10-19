@@ -31,7 +31,7 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->showMarca($params[1]);
         break;
-    case 'insertar':
+    case 'insertarr':
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
@@ -39,7 +39,7 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->removeMarcas($params[1]);
         break;
-    case 'editar':
+    case 'editarr':
         $controller = new MarcasControl();
         $controller->editMarca($idBotin);
         break;
@@ -53,19 +53,19 @@ $res = new Response();
         $controller = new BotinControl($res);
         $controller->showBotin($params[1]);
         break;
-    case 'insertarr':
+    case 'insertar':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
         $controller->addBotines();
         break;
-    case 'eliminarr':
+    case 'eliminar':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
         $controller->removeBotines($params[1]);
         break;
-    case 'editarr':
+    case 'editar':
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controller = new BotinControl($res);
@@ -78,6 +78,10 @@ $res = new Response();
     case 'login':
         $controller = new AuthControl();
         $controller->login();
+        break;
+    case 'logout':
+        $controller = new AuthControl();
+        $controller->logout();
         break;
     default:
     echo "ERROR 404 not found";

@@ -14,7 +14,7 @@ class BotinView {
 
     function showBotin($botin) {
         require "templates/botin_info.phtml";
-        //require de edit aca pero si esta logueado seria(ver eso)
+        require "templates/editar_botin.phtml";
     }
 
     function showError($error) {

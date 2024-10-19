@@ -28,7 +28,7 @@ class BotinControl {
 
     function showBotin($id) {
         $botin = $this->model->get($id);
-        return $this->view->showBotin($botin);
+        $this->view->showBotin($botin);
     }
 
     function addBotines() {
