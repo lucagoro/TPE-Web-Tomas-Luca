@@ -7,6 +7,7 @@ class MarcasView{
     }
     function showMarca($marca, $botines){
         require "templates/marca_botines.phtml";
+        
     }
     function showError($error){
         require 'templates/error.phtml';

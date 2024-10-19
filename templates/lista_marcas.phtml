@@ -5,11 +5,14 @@
 
 <ul>
     <?php foreach($marcas as $marca) {?>
+        <img src="<?= $marca->foto ?>">
         <li>
             <?= $marca->nombre ?> | Sede: <?= $marca->sede?>
-            <a href="eliminarr/<?= $marca->id_marca?>" type="button">Borrar</a>
-            <a href="editarr/<?= $marca->id_marca?>" type="button">Editar</a>
+            <a href="eliminarMarca/<?= $marca->id_marca?>" type="button">Borrar</a>
+            <a href="preEditarMarca/<?= $marca->id_marca?>" type="button">Editar</a>
             <p><a href="nombre/<?= $marca->id_marca ?>">Ver botines de <?= $marca->nombre ?> en <?= $marca->sede?></a></p>
+            <img src="<?php $marca->foto ?>">
+            
         </li>
     <?php } ?>
 </ul>

@@ -25,24 +25,23 @@ class MarcasModel{
         $marca = $query-> fetchALL(PDO::FETCH_OBJ);
         return $marca;
     }
-    function insertMarca($marca, $sede){
+    function insertMarca($marca, $sede, $foto){
         $db = $this-> connect();
     
-        $query=  $this->db->prepare('INSERT INTO marcas(nombre, sede)VALUES(?,?)');
-        $query->execute([$marca, $sede]);
+        $query=  $this->db->prepare('INSERT INTO marcas(nombre, sede, foto)VALUES(?,?,?)');
+        $query->execute([$marca, $sede, $foto]);
         return $db->lastInsertId();
-        header('Location: ' . BASE_URL);
     }
     function deleteMarca($id){
         
         $db= $this-> connect();
-        $query = $db->prepare('DELETE FROM marcas WHERE id_marca=?');
+        $query = $db->prepare("DELETE FROM marcas WHERE `marcas`.`id_marca` = ?");
         $query->execute([$id]);
-        header('Location: ' . BASE_URL);
+        
     }
-    function editMarca($nombre, $sede, $id_marca) {
-        $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ? WHERE id_marca = ?");
-        return $query->execute([$nombre, $sede, $id_marca]);
+    function editMarca($nombre, $sede, $id_marca, $foto) {
+        $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ?, foto = ? WHERE id_marca = ?");
+        return $query->execute([$nombre, $sede, $id_marca, $foto]);
     }
     function getBotinesByMarca($id_marca){
         $query = $this->db->prepare("SELECT * FROM botines WHERE id_marca = ?");

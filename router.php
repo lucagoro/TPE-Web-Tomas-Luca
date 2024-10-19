@@ -31,15 +31,19 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->showMarca($params[1]);
         break;
-    case 'insertarr':
+    case 'insertarMarca':
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
-    case 'eliminar':
+    case 'eliminarMarca':
         $controller = new MarcasControl();
         $controller->removeMarcas($params[1]);
         break;
-    case 'editarr':
+    case 'preEditarMarca':
+        $controller = new MarcasControl();
+        $controller->preEdit($params[1]);
+        break;
+    case 'editarMarca':
         $controller = new MarcasControl();
         $controller->editMarca($params[1]);
         break;

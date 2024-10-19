@@ -1,13 +1,11 @@
-<?php 
-require 'temlpates/hearder.phtml';
-?>
+<?php require 'templates/header.phtml';?>
 <h2>Editar Marca</h2>
-<form action="<?= BASE_URL ?>editar/<?= $marca->id_marca ?>" method="POST">
+<form action="editarMarca/<?= $marca[0]->id_marca ?>" method="POST">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" value="<?= $marca->nombre ?>" required>
+    <input type="text" id="nombre" name="nombre" value="<?= $marca[0]->nombre ?>" required>
     
     <label for="sede">Sede:</label>
-    <input type="text" id="sede" name="sede" value="<?= $marca->sede ?>" required>
+    <input type="text" id="sede" name="sede" value="<?= $marca[0]->sede ?>" required>
     
     <button type="submit">Guardar Cambios</button>
 </form>
