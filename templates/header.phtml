@@ -15,6 +15,11 @@
 
     <header>
         <h1><a href="botines">CATALOGO - BOTINES</a></h1> <!-- CAMBIAR A INICIO DSPS EL HREF (COMO ESTE EN EL ROUTER) -->
+        <?php if($this->usuario): ?>
+            <div>
+                <a href="logout">Cerrar sesión</a>
+            </div>
+            <?php endif; ?>
         <nav>
             <div>
                 <a href="botines">Botines</a>
@@ -23,3 +28,4 @@
                 
         </nav>
     </header>
+   
