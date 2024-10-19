@@ -19,31 +19,38 @@ $res = new Response();
  }
 
  $params = explode('/', $action);
+ 
 
  switch($params[0]) {
     //case 'inicio':
     //aca seguro un metodo de tomi (lista de marcas)
     case 'marcas':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->showMarcas();
         break;
     case 'nombre':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->showMarca($params[1]);
         break;
     case 'insertarMarca':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
     case 'eliminarMarca':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->removeMarcas($params[1]);
         break;
     case 'preEditarMarca':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->preEdit($params[1]);
         break;
     case 'editarMarca':
+        sessionAuthMiddleware($res);
         $controller = new MarcasControl();
         $controller->editMarca($params[1]);
         break;

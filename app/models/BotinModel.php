@@ -1,14 +1,46 @@
 <?php
+include_once 'config.php';
 
 class BotinModel {
     private $db;
 
     function __construct() {
         $this->db = $this->connection();
+        $this->_deploy();
     }
 
+    function _deploy() {
+        $query = $this->db->query('SHOW TABLES LIKE "botines"');
+        $tables = $query->fetchAll();
+        if (count($tables) == 0) {
+            $sql = <<<END
+        CREATE TABLE `botines` (
+            `id_botin` int(11) NOT NULL AUTO_INCREMENT,
+            `modelo` varchar(50) NOT NULL,
+            `color` varchar(50) NOT NULL,
+            `talle` double NOT NULL,
+            `gama` varchar(30) NOT NULL,
+            `precio` float NOT NULL,
+            `id_marca` int(11) NOT NULL,
+            PRIMARY KEY (`id_botin`),
+            KEY `fk_id_marca` (`id_marca`),
+            CONSTRAINT `botines_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`Id_marca`)
+          ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+END;
+            $this->db->query($sql);
+
+            $this->insert('mercurial', 'rojo', 40, 'alta', 300000, 2);
+            $this->insert('tempo', 'negro', 42, 'alta', 350000, 1);
+    }
+}
+
     function connection() {
-        return new PDO('mysql:host=localhost;dbname=marcas_botines;charset=utf8', 'root', '');
+        return new PDO(
+            "mysql:host=" . DB_HOST .
+            ";dbname=" . DB_NAME . ";charset=utf8",
+            DB_USER,
+            DB_PASS
+        );
     }
 
     function getAll() {

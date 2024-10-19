@@ -10,7 +10,7 @@ class BotinControl {
 
     function __construct($res) {
         $this->model = new BotinModel();
-        $this->view = new BotinView($res);
+        $this->view = new BotinView($res->usuario);
         $this->modelMarca = new MarcasModel();
     }
     
@@ -72,7 +72,7 @@ class BotinControl {
 
         $id = $this->model->edit($modelo, $color, $talle, $gama, $precio, $id_marca, $idBotin);
         if($id) {
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "botin/" . $idBotin);
         } else {
             return $this->view->showError('Error al editar botin!');
         }
