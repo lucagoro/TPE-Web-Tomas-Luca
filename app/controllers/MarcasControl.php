@@ -41,23 +41,24 @@ class MarcasControl{
     }
 
     function removeMarcas($id){
-        $this->model->deleteMarca($id);
+        $this->model->deleteMarca([$id]);
         header('Location: ' . BASE_URL);
     }
 
     function editMarca($id_marca){
-        $marca = $_POST['nombre'];
-        $sede = $_POST['sede'];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){}
+            $marca = $_POST['nombre'];
+            $sede = $_POST['sede'];
 
-        if(empty($marca) || empty($sede)){
-            $this->view->showError('Faltan campos obligatorios!');
-        }
+            if(empty($marca) || empty($sede)){
+                $this->view->showError('Faltan campos obligatorios!');
+            }
 
-        $id = $this->model->editMarca($marca, $sede, $id_marca);
-        if($id) {
-            header("Location: " . BASE_URL);
-        } else {
-            $this->view->showError('Error al editar marca!');
-        }
+            $id = $this->model->editMarca($marca, $sede, $id_marca);
+            if($id) {
+                header("Location: " . BASE_URL);
+            } else {
+                $this->view->showError('Error al editar marca!');
+            }
     }
 }

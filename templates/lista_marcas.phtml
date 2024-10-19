@@ -7,7 +7,8 @@
     <?php foreach($marcas as $marca) {?>
         <li>
             <?= $marca->nombre ?> | Sede: <?= $marca->sede?>
-            <a href="eliminar/<?= $marca->id_marca?>" type="button">Borrar</a>
+            <a href="eliminarr/<?= $marca->id_marca?>" type="button">Borrar</a>
+            <a href="editarr/<?= $marca->id_marca?>" type="button">Editar</a>
             <p><a href="nombre/<?= $marca->id_marca ?>">Ver botines de <?= $marca->nombre ?> en <?= $marca->sede?></a></p>
         </li>
     <?php } ?>

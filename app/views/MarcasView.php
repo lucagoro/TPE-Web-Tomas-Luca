@@ -11,6 +11,9 @@ class MarcasView{
     function showError($error){
         require 'templates/error.phtml';
     }
+    function showEditForm($marca){
+        require 'templates/editar_marca.phtml';
+    }
 
 
 }

@@ -38,13 +38,11 @@ class MarcasModel{
         $db= $this-> connect();
         $query = $db->prepare('DELETE FROM marcas WHERE id_marca=?');
         $query->execute([$id]);
-        
-      
+        header('Location: ' . BASE_URL);
     }
-    function editMarca($marca, $sede, $id_marca){
-        $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ?  WHERE id_marca = ?");
-        $editado = $query->execute([$marca, $sede]);
-        return $editado;
+    function editMarca($nombre, $sede, $id_marca) {
+        $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ? WHERE id_marca = ?");
+        return $query->execute([$nombre, $sede, $id_marca]);
     }
     function getBotinesByMarca($id_marca){
         $query = $this->db->prepare("SELECT * FROM botines WHERE id_marca = ?");
