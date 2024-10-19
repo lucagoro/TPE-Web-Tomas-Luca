@@ -28,37 +28,43 @@ class MarcasControl{
     function addMarca(){
         $marca = $_POST['nombre'];
         $sede = $_POST['sede'];
+        $foto = $_POST['foto'];
 
         if(empty($marca) || empty($sede)){
             $this->view->showError('Faltan campos obligatorios! Por favor completarlos para seguir con el proceso.');
         }
-        $id = $this->model->insertMarca($marca, $sede);
-        if($id){
-            header("Location: ". BASE_URL);
-        }else{
-            $this->view->showError('Error al cargar marca!');
-        }
+        $this->model->insertMarca($marca, $sede, $foto);
+        header("Location: " . BASE_URL . "marcas");
+        
     }
 
     function removeMarcas($id){
-        $this->model->deleteMarca([$id]);
-        header('Location: ' . BASE_URL);
+        $this->model->deleteMarca($id);
+        header("Location: " . BASE_URL . "marcas");
     }
 
     function editMarca($id_marca){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){}
-            $marca = $_POST['nombre'];
-            $sede = $_POST['sede'];
 
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $marca = trim($_POST["nombre"]);
+            $sede = trim($_POST["sede"]);
+            $foto = trim($_POST["foto"]);
+        }
             if(empty($marca) || empty($sede)){
                 $this->view->showError('Faltan campos obligatorios!');
             }
 
-            $id = $this->model->editMarca($marca, $sede, $id_marca);
+            $id = $this->model->editMarca($marca, $sede, $id_marca, $foto);
             if($id) {
-                header("Location: " . BASE_URL);
+                header("Location: " . BASE_URL . "marcas");
             } else {
                 $this->view->showError('Error al editar marca!');
             }
+    }
+    function preEdit($id_marca){
+        $marca = $this->model->getMarca($id_marca);
+        $this->view->showEditForm($marca);
+        
     }
 }

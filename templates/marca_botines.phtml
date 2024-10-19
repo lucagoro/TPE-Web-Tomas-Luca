@@ -1,7 +1,7 @@
 <?php require "templates/header.phtml"; ?>
-
-<h2>Marca: <?= $marca->nombre ?></h2>
-<p>Sede: <?= $marca->sede ?></p>
+<h2>Marca: <?= $marca[0]->nombre ?></h2>
+<p>Sede: <?= $marca[0]->sede ?></p>
+<div><img src="<?= $marca[0]->foto?>" alt=""></div>
 
 <h3>Botines de esta marca:</h3>
 <ul>
