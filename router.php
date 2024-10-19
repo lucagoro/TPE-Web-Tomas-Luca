@@ -35,13 +35,13 @@ $res = new Response();
         $controller = new MarcasControl();
         $controller->addMarca();
         break;
-    case 'eliminarr':
+    case 'eliminar':
         $controller = new MarcasControl();
         $controller->removeMarcas($params[1]);
         break;
     case 'editarr':
         $controller = new MarcasControl();
-        $controller->editMarca($idBotin);
+        $controller->editMarca($params[1]);
         break;
     case 'botines':
         sessionAuthMiddleware($res);
