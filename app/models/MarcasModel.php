@@ -1,14 +1,8 @@
 <?php
-class MarcasModel{
-    private $db;
+include_once 'app/models/model.php';
 
-    function __construct() {
-        $this->db = $this->connect();
-    }
+class MarcasModel extends Model{
 
-    private function connect(){
-        return new PDO('mysql:host=localhost;dbname=marcas_botines;charset=utf8', 'root', '');
-    }
     function getAllMarcas(){
         
         $query = $this->db->prepare("SELECT * FROM marcas");
@@ -26,16 +20,16 @@ class MarcasModel{
         return $marca;
     }
     function insertMarca($marca, $sede, $foto){
-        $db = $this-> connect();
+        
     
         $query=  $this->db->prepare('INSERT INTO marcas(nombre, sede, foto)VALUES(?,?,?)');
         $query->execute([$marca, $sede, $foto]);
-        return $db->lastInsertId();
+        
     }
     function deleteMarca($id){
         
-        $db= $this-> connect();
-        $query = $db->prepare("DELETE FROM marcas WHERE `marcas`.`id_marca` = ?");
+        
+        $query =$this->db->prepare("DELETE FROM marcas WHERE `marcas`.`id_marca` = ?");
         $query->execute([$id]);
         
     }

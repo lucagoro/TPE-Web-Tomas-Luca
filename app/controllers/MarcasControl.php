@@ -7,9 +7,9 @@ class MarcasControl{
     private $model;
     private $modelBotin;
 
-    function __construct() {
+    function __construct($res) {
         $this->model = new MarcasModel();
-        $this->view = new MarcasView();
+        $this->view = new MarcasView($res);
         $this->modelBotin = new BotinModel();
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-09-2024 a las 01:05:02
+-- Tiempo de generación: 19-10-2024 a las 23:37:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,17 +54,40 @@ INSERT INTO `botines` (`id_botin`, `modelo`, `color`, `talle`, `gama`, `precio`,
 CREATE TABLE `marcas` (
   `id_marca` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `sede` varchar(50) NOT NULL
+  `sede` varchar(50) NOT NULL,
+  `foto` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `marcas`
 --
 
-INSERT INTO `marcas` (`id_marca`, `nombre`, `sede`) VALUES
-(1, 'Nike', 'Argentina'),
-(2, 'Adidas', 'Alemania'),
-(3, 'Puma', 'Brasil');
+INSERT INTO `marcas` (`id_marca`, `nombre`, `sede`, `foto`) VALUES
+(1, 'Puma', 'Tandil', NULL),
+(2, 'Nikoo', 'Argentina', ' https://tse3.mm.bing.net/th?id=OIP.ZnOtPr085U5DoYcm35ogrQHaFj&pid=Api&P=0&h=180'),
+(17, 'kike', 'rusia', NULL),
+(20, 'Reebok', 'Chile', 'https://tse2.mm.bing.net/th?id=OIP.PBH2xzzwlHBfX-t6TpZRZgHaHC&pid=Api&P=0&h=180'),
+(21, 'umbro', 'arg', 'https://tse4.mm.bing.net/th?id=OIP.6F5ct7NgaEBFlIyBLCuBbwHaEz&pid=Api&P=0&h=180'),
+(23, 'Reebok', 'Mexico', 'https://tse2.mm.bing.net/th?id=OIP.DNufu8T6OFbofuln9-EhrAHaGB&pid=Api&P=0&h=180');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `usuario` varchar(200) NOT NULL,
+  `contraseña` char(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contraseña`) VALUES
+(1, 'webadmin', '$2y$10$Ao7blGL1mWlJuod4aUKEIOeOvYCRI37dhjgC6aR/xNmbB/Tcm/Jv2');
 
 --
 -- Índices para tablas volcadas
@@ -84,6 +107,12 @@ ALTER TABLE `marcas`
   ADD PRIMARY KEY (`id_marca`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -91,13 +120,19 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT de la tabla `botines`
 --
 ALTER TABLE `botines`
-  MODIFY `id_botin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_botin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -107,7 +142,7 @@ ALTER TABLE `marcas`
 -- Filtros para la tabla `botines`
 --
 ALTER TABLE `botines`
-  ADD CONSTRAINT `botines_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`Id_marca`);
+  ADD CONSTRAINT `botines_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id_marca`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
