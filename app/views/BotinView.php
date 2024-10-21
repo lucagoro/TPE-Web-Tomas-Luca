@@ -12,7 +12,7 @@ class BotinView {
         require "templates/lista_botines.phtml";
     }
 
-    function showBotin($botin, $marcas) {
+    function showBotin($botin, $marcas, $marca) {
         require "templates/botin_info.phtml";
         require "templates/editar_botin.phtml";
     }

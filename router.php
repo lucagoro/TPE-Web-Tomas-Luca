@@ -15,15 +15,13 @@ $res = new Response();
  if(!empty($_GET['action'])) {
     $action = $_GET['action'];
  } else {
-    $action = 'botines'; // cambiar a inicio cuando este
+    $action = 'marcas'; 
  }
 
  $params = explode('/', $action);
  
 
  switch($params[0]) {
-    //case 'inicio':
-    //aca seguro un metodo de tomi (lista de marcas)
     case 'marcas':
         sessionAuthMiddleware($res);
         $controller = new MarcasControl($res);

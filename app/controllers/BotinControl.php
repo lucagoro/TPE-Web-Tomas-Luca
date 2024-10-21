@@ -28,8 +28,11 @@ class BotinControl {
 
     function showBotin($id) {
         $botin = $this->model->get($id);
+
         $marcas = $this->modelMarca->getAllMarcas();
-        $this->view->showBotin($botin, $marcas);
+        $marca = $this->modelMarca->getMarcaById($botin->id_marca);
+
+        $this->view->showBotin($botin, $marcas, $marca);
     }
 
     function addBotines() {
@@ -46,7 +49,7 @@ class BotinControl {
 
         $id = $this->model->insert($modelo, $color, $talle, $gama, $precio, $id_marca);
         if($id) {
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "botines");
         } else {
             return $this->view->showError('Error al insertar botin!');
         }
@@ -54,7 +57,7 @@ class BotinControl {
 
     function removeBotines($id) {
         $this->model->delete($id);
-        header("Location: " . BASE_URL);
+        header("Location: " . BASE_URL . "botines");
 
     }
 

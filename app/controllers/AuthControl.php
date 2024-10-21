@@ -13,7 +13,7 @@ class AuthControl {
 
     function showLogin() {
         $this->view->showLogin(); // muestro el formulario de login
-    } // ver si va return
+    } 
 
     function login() {
         $usuario = $_POST['usuario'];
@@ -35,7 +35,7 @@ class AuthControl {
             
             header("Location: " . BASE_URL);
         } else {
-            return $this->view->showLogin('Credenciales incorrectas!'); // ver los return
+            return $this->view->showLogin('Credenciales incorrectas!');
         }
 
     }
