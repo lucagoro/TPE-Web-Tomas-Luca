@@ -35,7 +35,7 @@ class MarcasModel extends Model{
     }
     function editMarca($nombre, $sede, $id_marca, $foto) {
         $query = $this->db->prepare("UPDATE marcas SET nombre = ?, sede = ?, foto = ? WHERE id_marca = ?");
-        return $query->execute([$nombre, $sede, $id_marca, $foto]);
+        return $query->execute([$nombre, $sede, $foto, $id_marca]);
     }
     function getBotinesByMarca($id_marca){
         $query = $this->db->prepare("SELECT * FROM botines WHERE id_marca = ?");
